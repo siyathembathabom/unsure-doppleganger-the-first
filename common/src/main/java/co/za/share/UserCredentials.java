@@ -8,9 +8,12 @@ public class UserCredentials {
     private String userPhoneNumber;
     private Double AccountBalance;
 
-    public UserCredentials(String uniqueIdentifier) {
-        this.uniqueIdentifier = uniqueIdentifier;
+    public UserCredentials() {
         this.AccountBalance = 0.00;
+    }
+
+    public void setUserIdentifier(String id) {
+        this.uniqueIdentifier = id;
     }
 
     public String getUserIdentifier() {

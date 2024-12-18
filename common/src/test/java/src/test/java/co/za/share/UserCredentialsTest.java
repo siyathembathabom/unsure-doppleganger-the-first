@@ -9,19 +9,23 @@ import co.za.share.UserCredentials;
 
 public class UserCredentialsTest {
 
-    private UserCredentials user = new UserCredentials("#-195-7214");
+    private UserCredentials user = new UserCredentials();
     
     @Test
-    public void testGetUserIdentifier() {
+    public void testGetUserIdentifierLength() {
         int length = 10;
+        user.setUserIdentifier("#-195-4143");
         String result = user.getUserIdentifier();
         assertEquals(length, result.length());
     }
 
     @Test
     public void testUniqueIdentifiersShouldBeDifferent() {
+        user.setUserIdentifier("#-195-4143");
         String resultOne = user.getUserIdentifier();
-        UserCredentials userTwo = new UserCredentials("#-195-4143");
+
+        UserCredentials userTwo = new UserCredentials();
+        userTwo.setUserIdentifier("#-195-6190");
         String resultTwo = userTwo.getUserIdentifier();
         assertNotEquals(resultOne, resultTwo);
     }
