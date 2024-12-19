@@ -5,8 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>co.za.share</groupId>
-    <artifactId>common</artifactId>
+    <artifactId>cashAppClone</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>common</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>common_lib</id>
+            <name>Project library</name>
+            <layout>default</layout>
+            <url>file:///${project.basedir}/common</url>
+        </repository>
+    </repositories>
+
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
@@ -32,6 +48,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>
