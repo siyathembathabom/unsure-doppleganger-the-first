@@ -2,12 +2,14 @@ package co.za.share;
 
 public class Account {
     private UserCredentials accountHolder;
+    private ValidateTransactions validTransactions;
     private String accountHolderId;
     private double balance;
     private boolean isTheAccountActive;
 
     public Account(UserCredentials owner, String accountId) {
         this.accountHolder = owner;
+        this.validTransactions = new ValidateTransactions();
         this.accountHolderId = accountId;
         this.balance = 0.00;
         this.isTheAccountActive = true;
@@ -42,13 +44,13 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        if (isTheAccountActive) {
+        if (validTransactions.isDepositValid(amount, isTheAccountActive)) {
             this.balance += amount;
         }
     }
 
     public void withdraw(double amount) {
-        if (isTheAccountActive) {
+        if (validTransactions.isWithdrawalValid(amount, this.balance, isTheAccountActive)) {
             this.balance -= amount;
         }
     }
