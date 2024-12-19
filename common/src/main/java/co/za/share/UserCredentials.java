@@ -6,11 +6,7 @@ public class UserCredentials {
     private String userName;
     private String userEmail;
     private String userPhoneNumber;
-    private Double AccountBalance;
-
-    public UserCredentials() {
-        this.AccountBalance = 0.00;
-    }
+    private Account userAccount;
 
     public void setUserIdentifier(String id) {
         this.uniqueIdentifier = id;
@@ -44,11 +40,11 @@ public class UserCredentials {
         return this.userPhoneNumber;
     }
 
-    public void setUserAccountBalance(Double amount) {
-        this.AccountBalance = amount;
+    public void setUserAccount(Account account) {
+        this.userAccount = account;
     }
 
-    public Double getUserAccountBalance() {
-        return this.AccountBalance;
+    public Account getUserAccount() {
+        return this.userAccount;
     }
 }

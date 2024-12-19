@@ -1,4 +1,4 @@
-package src.test.java.co.za.share;
+package src.test.java.co.za.share.UnitTests;
 
 import co.za.share.UniqueIdentifierCreator;
 

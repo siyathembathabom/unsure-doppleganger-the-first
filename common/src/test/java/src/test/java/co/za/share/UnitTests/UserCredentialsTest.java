@@ -1,4 +1,4 @@
-package src.test.java.co.za.share;
+package src.test.java.co.za.share.UnitTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -51,11 +51,11 @@ public class UserCredentialsTest {
         assertEquals(testString, user.getUserPhoneNumber());
     }
 
-    @Test
-    public void testGetUserAccountBalance() {
-        Double testAmount = 100.00;
-        user.setUserAccountBalance(testAmount);
-        Double delta = 0.01;
-        assertEquals(testAmount, user.getUserAccountBalance(), delta);
-    }
+    // @Test
+    // public void testGetUserAccountBalance() {
+    //     Double testAmount = 100.00;
+    //     user.setUserAccountBalance(testAmount);
+    //     Double delta = 0.01;
+    //     assertEquals(testAmount, user.getUserAccountBalance(), delta);
+    // }
 }
