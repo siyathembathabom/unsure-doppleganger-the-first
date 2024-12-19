@@ -13,7 +13,7 @@ public class UniqueIdentifierCreator {
 
     public String createUserID() {
         for (int i = 0; i < 4; i++) {
-            this.uniqueID += this.secureRandom.nextInt(9);
+            this.uniqueID += this.secureRandom.nextInt(10);
         }
         return this.uniqueID;
     }

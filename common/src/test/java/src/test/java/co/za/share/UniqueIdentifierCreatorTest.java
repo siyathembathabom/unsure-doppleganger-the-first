@@ -2,6 +2,7 @@ package src.test.java.co.za.share;
 
 import co.za.share.UniqueIdentifierCreator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,5 +23,12 @@ public class UniqueIdentifierCreatorTest {
         UniqueIdentifierCreator uniqueIdentifierCreator = new UniqueIdentifierCreator();
         String userID = uniqueIdentifierCreator.createUserID();
         assertTrue(userID.contains("#-195-"));
+    }
+
+    @Test
+    public void testUserIDLengthShouldBeEqual() {
+        UniqueIdentifierCreator uniqueIdentifierCreator = new UniqueIdentifierCreator();
+        String userID = uniqueIdentifierCreator.createUserID();
+        assertEquals(10, userID.length());
     }
 }
