@@ -56,7 +56,9 @@ public class Account {
     }
 
     public void transferTo(double amount, UserCredentials targetUser) {
-        withdraw(balance);
-        targetUser.getUserAccount().deposit(amount);
+        withdraw(this.balance);
+        if (validTransactions.isWithdrawalValid(amount, this.balance, isTheAccountActive)) {
+            targetUser.getUserAccount().deposit(amount);
+        }
     }
 }
