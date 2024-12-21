@@ -5,54 +5,26 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner scanner;
     private UserCredentials userCredentials;
-    private Account account;
+    private SignUp signUp;
     private UniqueIdentifierCreator uniqueIdentifierCreator;
+    private String id = "";
 
     public UserInterface(Scanner scanner) {
             this.scanner = scanner;
             this.userCredentials = new UserCredentials();
+            this.signUp = new SignUp(scanner, userCredentials);
             this.uniqueIdentifierCreator = new UniqueIdentifierCreator();
+            this.id = uniqueIdentifierCreator.createUserID();
         }
 
     public void welcome() {
         System.out.println("Welcome!");
-        createName();
-        createEmail();
-        createNumber();
-        String id = uniqueIdentifierCreator.createUserID();
-        createUniqueIdentifier(id);
-        createAccount(id);
+        signUp.createName();
+        signUp.createEmail();
+        signUp.createNumber();
+        signUp.createUniqueIdentifier(this.id);
+        signUp.createAccount(this.id);
         start();
-    }
-
-    public String createName() {
-        System.out.print("Enter your name: ");
-        String name = this.scanner.nextLine();
-        this.userCredentials.setUserName(name);
-        return "\n";
-    }
-
-    public String createEmail() {
-        System.out.print("Enter you email address: ");
-        String email = this.scanner.nextLine();
-        this.userCredentials.setUserEmail(email);
-        return "\n";
-    }
-
-    public String createNumber() {
-        System.out.print("Enter your phone number: ");
-        String number = this.scanner.nextLine();
-        this.userCredentials.setUserPhoneNumber(number);
-        return "\n";
-    }
-
-    public void createUniqueIdentifier(String id) {
-        this.userCredentials.setUserIdentifier(id);
-    }
-
-    public void createAccount(String id) {
-        this.account = new Account(this.userCredentials, id);
-        this.userCredentials.setUserAccount(this.account);
     }
 
     public void start() {
