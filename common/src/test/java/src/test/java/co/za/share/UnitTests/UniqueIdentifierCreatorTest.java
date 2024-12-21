@@ -1,12 +1,12 @@
 package src.test.java.co.za.share.UnitTests;
 
-import co.za.share.UniqueIdentifierCreator;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import co.za.share.Client.UniqueIdentifierCreator;
 
 public class UniqueIdentifierCreatorTest {
 

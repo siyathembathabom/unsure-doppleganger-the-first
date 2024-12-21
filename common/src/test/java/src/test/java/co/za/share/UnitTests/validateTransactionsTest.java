@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import co.za.share.ValidateTransactions;
+import co.za.share.Account.ValidateTransactions;
 
 public class ValidateTransactionsTest {
 

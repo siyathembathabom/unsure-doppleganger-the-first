@@ -1,6 +1,10 @@
-package co.za.share;
+package co.za.share.ui;
 
 import java.util.Scanner;
+
+import co.za.share.Help;
+import co.za.share.Client.UniqueIdentifierCreator;
+import co.za.share.Client.UserCredentials;
 
 public class UserInterface {
     private Scanner scanner;
