@@ -21,14 +21,13 @@ public class UserInterface {
             this.id = uniqueIdentifierCreator.createUserID();
         }
 
-    public void welcome() {
+    public void userSignUp() {
         System.out.println("Welcome!");
         signUp.createName();
         signUp.createEmail();
         signUp.createNumber();
         signUp.createUniqueIdentifier(this.id);
         signUp.createAccount(this.id);
-        start();
     }
 
     public void start() {

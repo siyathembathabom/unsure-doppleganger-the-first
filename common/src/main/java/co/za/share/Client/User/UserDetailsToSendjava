@@ -1,0 +1,18 @@
+package co.za.share.Client.User;
+
+import org.json.JSONObject;
+
+public class UserDetailsToSend {
+
+    public static JSONObject createUserCredentialsJSONObject(UserCredentials userCredentials) {
+        JSONObject userObject = new JSONObject();
+
+        userObject.put("name", userCredentials.getUserName());
+        userObject.put("email", userCredentials.getUserEmail());
+        userObject.put("number", userCredentials.getUserPhoneNumber());
+        userObject.put("unique identifier", userCredentials.getUserIdentifier());
+        userObject.put("account", userCredentials.getUserAccount());
+
+        return userObject;
+    }
+}
