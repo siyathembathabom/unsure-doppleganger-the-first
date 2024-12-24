@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import co.za.share.Account.Account;
-import co.za.share.Client.UniqueIdentifierCreator;
-import co.za.share.Client.UserCredentials;
+import co.za.share.Client.User.UniqueIdentifierCreator;
+import co.za.share.Client.User.UserCredentials;
 
 public class AccountTest {
 

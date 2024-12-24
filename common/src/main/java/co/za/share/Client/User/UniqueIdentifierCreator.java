@@ -1,4 +1,4 @@
-package co.za.share.Client;
+package co.za.share.Client.User;
 
 import java.security.SecureRandom;
 

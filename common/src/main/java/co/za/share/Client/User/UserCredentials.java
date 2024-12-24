@@ -1,4 +1,4 @@
-package co.za.share.Client;
+package co.za.share.Client.User;
 
 import co.za.share.Account.Account;
 

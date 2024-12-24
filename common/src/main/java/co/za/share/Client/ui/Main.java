@@ -1,4 +1,4 @@
-package co.za.share.ui;
+package co.za.share.Client.ui;
 
 import java.util.Scanner;
 

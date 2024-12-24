@@ -1,6 +1,6 @@
 package co.za.share.Account;
 
-import co.za.share.Client.UserCredentials;
+import co.za.share.Client.User.UserCredentials;
 
 public class Account {
     private UserCredentials accountHolder;

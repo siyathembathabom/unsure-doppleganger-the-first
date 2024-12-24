@@ -1,9 +1,9 @@
-package co.za.share.ui;
+package co.za.share.Client.ui;
 
 import java.util.Scanner;
 
 import co.za.share.Account.Account;
-import co.za.share.Client.UserCredentials;
+import co.za.share.Client.User.UserCredentials;
 
 public class SignUp {
     private Scanner scanner;
