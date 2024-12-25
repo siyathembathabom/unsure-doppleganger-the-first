@@ -1,4 +1,4 @@
-package co.za.share.Client.ui;
+package co.za.share.Client.SignUp;
 
 public class ValidateSignUp {
 

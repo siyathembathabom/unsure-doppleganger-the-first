@@ -1,14 +1,12 @@
-package co.za.share.Client.ui;
+package co.za.share.Client.SignUp;
 
 import java.util.Scanner;
 
-import co.za.share.Account.Account;
 import co.za.share.Client.User.UserCredentials;
 
 public class SignUp {
     private Scanner scanner;
     private UserCredentials userCredentials;
-    private Account account;
     private ValidateSignUp validate;
     
     public SignUp(Scanner scanner, UserCredentials userCredentials) {
@@ -51,8 +49,10 @@ public class SignUp {
         this.userCredentials.setUserIdentifier(id);
     }
 
-    public void createAccount(String id) {
-        this.account = new Account(this.userCredentials, id);
-    this.userCredentials.setUserAccount(this.account);
+    public void signUp(String id) {
+        createName();
+        createEmail();
+        createNumber();
+        createUniqueIdentifier(id);
     }
 }

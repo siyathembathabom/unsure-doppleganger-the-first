@@ -11,7 +11,6 @@ public class UserDetailsToSend {
         userObject.put("email", userCredentials.getUserEmail());
         userObject.put("number", userCredentials.getUserPhoneNumber());
         userObject.put("unique identifier", userCredentials.getUserIdentifier());
-        userObject.put("account", userCredentials.getUserAccount());
 
         return userObject;
     }

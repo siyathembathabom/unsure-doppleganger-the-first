@@ -11,6 +11,7 @@ public class Help {
                 4 - Deposit money
                 5 - Transfer money
                 6 - Get Balance
+                7 - Get Transaction History
                 0 - Exit
                 """;
                 // Add transaction history in the future

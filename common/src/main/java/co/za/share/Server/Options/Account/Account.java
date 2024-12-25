@@ -1,6 +1,6 @@
-package co.za.share.Account;
+package co.za.share.Server.Options.Account;
 
-import co.za.share.Client.User.UserCredentials;
+import co.za.share.Server.Options.User.UserCredentials;
 
 public class Account {
     private UserCredentials accountHolder;
@@ -54,13 +54,6 @@ public class Account {
     public void withdraw(double amount) {
         if (validTransactions.isWithdrawalValid(amount, this.balance, isTheAccountActive)) {
             this.balance -= amount;
-        }
-    }
-
-    public void transferTo(double amount, UserCredentials targetUser) {
-        withdraw(this.balance);
-        if (validTransactions.isWithdrawalValid(amount, this.balance, isTheAccountActive)) {
-            targetUser.getUserAccount().deposit(amount);
         }
     }
 }

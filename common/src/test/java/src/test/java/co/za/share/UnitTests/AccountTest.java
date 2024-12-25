@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Account.Account;
-import co.za.share.Client.User.UniqueIdentifierCreator;
-import co.za.share.Client.User.UserCredentials;
+import co.za.share.Server.Options.Account.Account;
+import co.za.share.Server.Options.User.UniqueIdentifierCreator;
+import co.za.share.Server.Options.User.UserCredentials;
 
 public class AccountTest {
 
