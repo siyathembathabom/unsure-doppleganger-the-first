@@ -47,6 +47,7 @@ public class UserHandler implements Runnable {
             try {
                 sendMessage("Enter an option:");
                 userInput = bufferedReader.readLine();
+
                 if (userInput.equalsIgnoreCase("0")) {
                     sendMessage("See you next time!");
                     closeEverything(socket, bufferedReader, bufferedWriter);
@@ -70,20 +71,36 @@ public class UserHandler implements Runnable {
                             this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getAccountStatus())) {
                             this.userCredentials.getUserAccount().withdraw(Double.parseDouble(amount));
                             sendMessage("Your available balance is now: " + this.userCredentials.getUserAccount().getBalance());
-                            break;
+                            this.userCredentials.getUserAccount().addToTransactionHistory("You have withdrawn " + 
+                            amount + " from your account.");
+                            isWithdrawalSuccessful = true;
+                        }
+
+                        if (!isWithdrawalSuccessful) {
+                            sendMessage("The amount you are trying to withdraw either exceeds the amount you have or you have" +
+                                " entered an invalid amount. Please try again.");
+                            isWithdrawalSuccessful = true;
                         }
                     }
                 }
 
                 if (userInput.equalsIgnoreCase("4")) {
-                    while (true) {
+                    boolean isDepositSuccessful = false;
+                    while (!isDepositSuccessful) {
                         sendMessage("Enter amount:");
                         String amount = listenForMessage();
                         if (getAmount(amount)) {
                             this.userCredentials.getUserAccount().deposit(Double.parseDouble(amount));
                             sendMessage("Your available balance is now: " + 
-                                this.userCredentials.getUserAccount().getBalance());
-                            break;
+                            this.userCredentials.getUserAccount().getBalance());
+                            this.userCredentials.getUserAccount().addToTransactionHistory("You have deposited " +
+                                amount + " into your account.");
+                            isDepositSuccessful = true;
+                        }
+
+                        if (!isDepositSuccessful) {
+                            sendMessage("The amount you are trying to deposit is invalid. Please try again.");
+                            isDepositSuccessful = true;
                         }
                     }
                 }
@@ -102,6 +119,9 @@ public class UserHandler implements Runnable {
                                     this.userCredentials.getUserAccount()
                                     .withdraw(Double.parseDouble(amount));
                                     user.userCredentials.getUserAccount().deposit(Double.parseDouble(amount));
+                                    user.userCredentials.getUserAccount().addToTransactionHistory(amount + " was transfered into your account");
+                                    this.userCredentials.getUserAccount().addToTransactionHistory("You have transfered " +
+                                        amount + " to account number " + accountNumber);
                                     isTransferSuccessful = true;
                                 }
                             }
@@ -119,7 +139,7 @@ public class UserHandler implements Runnable {
                 }
 
                 if (userInput.equalsIgnoreCase("7")) {
-
+                    sendMessage(this.userCredentials.getUserAccount().getTransactionHistory());
                 }
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
@@ -132,7 +152,6 @@ public class UserHandler implements Runnable {
             try {
                 Double.parseDouble(amountFromClient);
             } catch (NumberFormatException e) {
-                System.out.println("Your amount is invalid please try again.");
                 return false;
             }
             return true;
@@ -174,13 +193,6 @@ public class UserHandler implements Runnable {
             "\nAccount number:           " + this.userCredentials.getUserIdentifier() +
             "\nBalance                   " + this.userCredentials.getUserAccount().getBalance();
     }
-
-    // Come back here
-    // public void getTransactionHistory() {
-    //     for (UserHandler user : userHandlers) {
-    //         userHandlers
-    //     }
-    // }
 
     public void removeClientHandler() {
         userHandlers.remove(this);

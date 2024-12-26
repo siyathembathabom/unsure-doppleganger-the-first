@@ -9,14 +9,14 @@ public class Account {
     private String accountHolderId;
     private double balance;
     private boolean isTheAccountActive;
-    private ArrayList<String> transactionHistory;
+    private ArrayList<String> transactionHistoryList;
 
     public Account(UserCredentials owner, String accountId) {
         this.accountHolder = owner;
         this.accountHolderId = accountId;
         this.balance = 0.00;
         this.isTheAccountActive = true;
-        this.transactionHistory = new ArrayList<>();
+        this.transactionHistoryList = new ArrayList<>();
     }
 
     public UserCredentials getAccountHolder() {
@@ -60,10 +60,19 @@ public class Account {
     }
 
     public void addToTransactionHistory(String transaction) {
-        this.transactionHistory.add(transaction);
+        this.transactionHistoryList.add(transaction);
     }
 
-    public void getTransactionHistory() {
-
+    public String getTransactionHistory() {
+        String transactionHistory = "";
+        for (String transaction : transactionHistoryList) {
+            if (!transaction.isEmpty()) {
+                transactionHistory += transaction + "\n";
+            }
+        }
+        if (transactionHistory.isEmpty()) {
+            return "You have yet to make a transaction.";
+        }
+        return transactionHistory;
     }
 }
