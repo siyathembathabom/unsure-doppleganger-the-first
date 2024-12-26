@@ -12,10 +12,11 @@ import org.json.JSONObject;
 
 import co.za.share.Help;
 import co.za.share.Server.Options.Account.Account;
+import co.za.share.Server.Options.Account.ValidateTransactions;
 import co.za.share.Server.Options.User.UserCredentials;
 
 public class UserHandler implements Runnable {
-    public static ArrayList<UserHandler> userHandlers = new ArrayList<>();
+    private static ArrayList<UserHandler> userHandlers = new ArrayList<>();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -46,74 +47,80 @@ public class UserHandler implements Runnable {
             try {
                 sendMessage("Enter an option:");
                 userInput = bufferedReader.readLine();
-            if (userInput.equalsIgnoreCase("0")) {
-                sendMessage("See you next time!");
-                closeEverything(socket, bufferedReader, bufferedWriter);
-                break;
-            }
+                if (userInput.equalsIgnoreCase("0")) {
+                    sendMessage("See you next time!");
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                    break;
+                }
 
-            if (userInput.equalsIgnoreCase("1")) {
-                sendMessage(Help.help());
-            }
+                if (userInput.equalsIgnoreCase("1")) {
+                    sendMessage(Help.help());
+                }
 
-            if (userInput.equalsIgnoreCase("2")) {
-                sendMessage(getUserDetails());
-            }
+                if (userInput.equalsIgnoreCase("2")) {
+                    sendMessage(getUserDetails());
+                }
 
-            if (userInput.equalsIgnoreCase("3")) {
-                while (true) {
-                    sendMessage("Enter amount:");
-                    String inputFromClient = listenForMessage();
-                    if (getAmount(inputFromClient)) {
-                        this.userCredentials.getUserAccount().withdraw(Double.parseDouble(inputFromClient));
-                        sendMessage("Your available balance is now: " + this.userCredentials.getUserAccount().getBalance());
-                        break;
+                if (userInput.equalsIgnoreCase("3")) {
+                    boolean isWithdrawalSuccessful = false;
+                    while (!isWithdrawalSuccessful) {
+                        sendMessage("Enter amount:");
+                        String amount = listenForMessage();
+                        if (getAmount(amount) && ValidateTransactions.isTransactionValid(Double.parseDouble(amount),
+                            this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getAccountStatus())) {
+                            this.userCredentials.getUserAccount().withdraw(Double.parseDouble(amount));
+                            sendMessage("Your available balance is now: " + this.userCredentials.getUserAccount().getBalance());
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (userInput.equalsIgnoreCase("4")) {
-                while (true) {
-                    sendMessage("Enter amount:");
-                    String inputFromClient = listenForMessage();
-                    if (getAmount(inputFromClient)) {
-                        this.userCredentials.getUserAccount().deposit(Double.parseDouble(inputFromClient));
-                        sendMessage("Your available balance is now: " + 
-                            this.userCredentials.getUserAccount().getBalance());
-                        break;
+                if (userInput.equalsIgnoreCase("4")) {
+                    while (true) {
+                        sendMessage("Enter amount:");
+                        String amount = listenForMessage();
+                        if (getAmount(amount)) {
+                            this.userCredentials.getUserAccount().deposit(Double.parseDouble(amount));
+                            sendMessage("Your available balance is now: " + 
+                                this.userCredentials.getUserAccount().getBalance());
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (userInput.equalsIgnoreCase("5")) {
-                boolean isTransferSuccessful = false;
-                while (!isTransferSuccessful) {
-                    sendMessage("Enter account number:");
-                    String accountNumber = listenForMessage();
-                    sendMessage("Enter Amount: ");
-                    String amount = listenForMessage();
-                    if (getAmount(amount)) {
-                        for (UserHandler user : userHandlers) {
-                            if (user.userCredentials.getUserIdentifier().equals(accountNumber)) {
-                                if (this.userCredentials.getUserAccount().getBalance() - Double.parseDouble(amount) >= 0) {
+                if (userInput.equalsIgnoreCase("5")) {
+                    boolean isTransferSuccessful = false;
+                    while (!isTransferSuccessful) {
+                        sendMessage("Enter account number:");
+                        String accountNumber = listenForMessage();
+                        sendMessage("Enter Amount: ");
+                        String amount = listenForMessage();
+                        if (getAmount(amount)) {
+                            for (UserHandler user : userHandlers) {
+                                if (user.userCredentials.getUserIdentifier().equals(accountNumber) && ValidateTransactions.isTransactionValid( Double.parseDouble(amount), 
+                                    this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getAccountStatus())) {
                                     this.userCredentials.getUserAccount()
                                     .withdraw(Double.parseDouble(amount));
                                     user.userCredentials.getUserAccount().deposit(Double.parseDouble(amount));
+                                    isTransferSuccessful = true;
                                 }
-                                isTransferSuccessful = true;
                             }
                         }
-                    }
-                    if (!isTransferSuccessful) {
-                        sendMessage("Invalid Account number or amount. Please try again");
+                        if (!isTransferSuccessful) {
+                            sendMessage("Invalid Account number or amount. Please try again.");
+                            isTransferSuccessful = true;
+                        }
                     }
                 }
-            }
 
-            if (userInput.equalsIgnoreCase("6")) {
-                sendMessage("Your avialable balance is " + 
-                    this.userCredentials.getUserAccount().getBalance());
-            }
+                if (userInput.equalsIgnoreCase("6")) {
+                    sendMessage("Your avialable balance is " + 
+                        this.userCredentials.getUserAccount().getBalance());
+                }
+
+                if (userInput.equalsIgnoreCase("7")) {
+
+                }
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 break;
@@ -167,6 +174,13 @@ public class UserHandler implements Runnable {
             "\nAccount number:           " + this.userCredentials.getUserIdentifier() +
             "\nBalance                   " + this.userCredentials.getUserAccount().getBalance();
     }
+
+    // Come back here
+    // public void getTransactionHistory() {
+    //     for (UserHandler user : userHandlers) {
+    //         userHandlers
+    //     }
+    // }
 
     public void removeClientHandler() {
         userHandlers.remove(this);

@@ -13,31 +13,31 @@ public class ValidateTransactionsTest {
 
     @Test
     public void testDepositShouldBeValid() {
-        assertTrue(validate.isDepositValid(100.00, true));
+        assertTrue(ValidateTransactions.isDepositValid(100.00, true));
     }
 
     @Test
     public void testDepositShouldNotBeValidForNegativeValues() {
-        assertFalse(validate.isDepositValid(-1.00, true));
+        assertFalse(ValidateTransactions.isDepositValid(-1.00, true));
     }
 
     @Test
     public void testDepositShouldNotBeValidForInactiveAccount() {
-        assertFalse(validate.isDepositValid(100.00, false));
+        assertFalse(ValidateTransactions.isDepositValid(100.00, false));
     }
 
     @Test
     public void testWithdrawalShouldBeValid() {
-        assertTrue(validate.isWithdrawalValid(100.00, 150.00, true));
+        assertTrue(ValidateTransactions.isTransactionValid(100.00, 150.00, true));
     }
 
     @Test
     public void testWithdrawalShouldBeInvalidForNegativeValues() {
-        assertFalse(validate.isWithdrawalValid(200, 100.00, true));
+        assertFalse(ValidateTransactions.isTransactionValid(200, 100.00, true));
     }
 
     @Test
     public void testWithdrawalShouldBeInvalidForInactiveAccount() {
-        assertFalse(validate.isWithdrawalValid(10, 0, false));
+        assertFalse(ValidateTransactions.isTransactionValid(10, 0, false));
     }
 }
