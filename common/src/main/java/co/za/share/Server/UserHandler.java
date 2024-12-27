@@ -114,10 +114,11 @@ public class UserHandler implements Runnable {
                         String amount = listenForMessage();
                         if (getAmount(amount)) {
                             for (UserHandler user : userHandlers) {
-                                if (user.userCredentials.getUserIdentifier().equals(accountNumber) && ValidateTransactions.isTransactionValid( Double.parseDouble(amount), 
-                                    this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getAccountStatus())) {
-                                    this.userCredentials.getUserAccount()
-                                    .withdraw(Double.parseDouble(amount));
+                                if (user.userCredentials.getUserIdentifier().equals(accountNumber) &&
+                                    ValidateTransactions.isTransactionValid( Double.parseDouble(amount),
+                                    this.userCredentials.getUserAccount().getBalance(),
+                                    this.userCredentials.getUserAccount().getAccountStatus())) {
+                                    this.userCredentials.getUserAccount().withdraw(Double.parseDouble(amount));
                                     user.userCredentials.getUserAccount().deposit(Double.parseDouble(amount));
                                     user.userCredentials.getUserAccount().addToTransactionHistory(amount + " was transfered into your account");
                                     this.userCredentials.getUserAccount().addToTransactionHistory("You have transfered " +

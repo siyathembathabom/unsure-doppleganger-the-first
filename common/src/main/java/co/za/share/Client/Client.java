@@ -54,7 +54,6 @@ public class Client {
             @Override
             public void run() {
                 String messageFromServer;
-
                 while (socket.isConnected()) {
                     try {
                         messageFromServer = bufferedReader.readLine();
