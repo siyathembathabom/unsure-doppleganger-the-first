@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import co.za.share.Help;
-import co.za.share.Server.Options.Account.Account;
-import co.za.share.Server.Options.Account.ValidateTransactions;
-import co.za.share.Server.Options.User.UserCredentials;
+import co.za.share.Menu;
+import co.za.share.Server.UserDetails.Account.Account;
+import co.za.share.Server.UserDetails.Account.ValidateTransactions;
+import co.za.share.Server.UserDetails.User.UserCredentials;
 
 public class UserHandler implements Runnable {
     private static ArrayList<UserHandler> userHandlers = new ArrayList<>();
@@ -41,28 +41,18 @@ public class UserHandler implements Runnable {
     @Override
     public void run() {
         String userInput;
-        sendMessage("Welcome! \n" + Help.help());
+        sendMessage("Welcome! \n" + Menu.menu());
 
         while (socket.isConnected()) {
             try {
                 sendMessage("Enter an option:");
                 userInput = bufferedReader.readLine();
 
-                if (userInput.equalsIgnoreCase("0")) {
-                    sendMessage("See you next time!");
-                    closeEverything(socket, bufferedReader, bufferedWriter);
-                    break;
-                }
-
-                if (userInput.equalsIgnoreCase("1")) {
-                    sendMessage(Help.help());
-                }
-
-                if (userInput.equalsIgnoreCase("2")) {
+                if (userInput.equals("1")) {
                     sendMessage(getUserDetails());
                 }
 
-                if (userInput.equalsIgnoreCase("3")) {
+                if (userInput.equals("2")) {
                     boolean isWithdrawalSuccessful = false;
                     while (!isWithdrawalSuccessful) {
                         sendMessage("Enter amount:");
@@ -84,7 +74,7 @@ public class UserHandler implements Runnable {
                     }
                 }
 
-                if (userInput.equalsIgnoreCase("4")) {
+                if (userInput.equals("3")) {
                     boolean isDepositSuccessful = false;
                     while (!isDepositSuccessful) {
                         sendMessage("Enter amount:");
@@ -105,7 +95,7 @@ public class UserHandler implements Runnable {
                     }
                 }
 
-                if (userInput.equalsIgnoreCase("5")) {
+                if (userInput.equals("4")) {
                     boolean isTransferSuccessful = false;
                     while (!isTransferSuccessful) {
                         sendMessage("Enter account number:");
@@ -134,13 +124,19 @@ public class UserHandler implements Runnable {
                     }
                 }
 
-                if (userInput.equalsIgnoreCase("6")) {
+                if (userInput.equals("5")) {
                     sendMessage("Your avialable balance is " + 
                         this.userCredentials.getUserAccount().getBalance());
                 }
 
-                if (userInput.equalsIgnoreCase("7")) {
+                if (userInput.equals("6")) {
                     sendMessage(this.userCredentials.getUserAccount().getTransactionHistory());
+                }
+
+                if (userInput.equals("7")) {
+                    sendMessage("See you next time!");
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                    break;
                 }
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
@@ -189,7 +185,7 @@ public class UserHandler implements Runnable {
     public String getUserDetails() {
         return "Your account details are:" + 
             "\nName:                     " + this.userCredentials.getUserName() + 
-            "\nPhone number:             "+ this.userCredentials.getUserPhoneNumber() + 
+            "\nPhone number:             " + this.userCredentials.getUserPhoneNumber() + 
             "\nEmail:                    " + this.userCredentials.getUserEmail() +
             "\nAccount number:           " + this.userCredentials.getUserIdentifier() +
             "\nBalance                   " + this.userCredentials.getUserAccount().getBalance();

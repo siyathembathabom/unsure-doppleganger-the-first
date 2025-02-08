@@ -1,8 +1,8 @@
-package co.za.share.Server.Options.Account;
+package co.za.share.Server.UserDetails.Account;
 
 import java.util.ArrayList;
 
-import co.za.share.Server.Options.User.UserCredentials;
+import co.za.share.Server.UserDetails.User.UserCredentials;
 
 public class Account {
     private UserCredentials accountHolder;

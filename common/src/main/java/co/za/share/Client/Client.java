@@ -11,7 +11,7 @@ import java.util.Scanner;
 import co.za.share.Client.SignUp.SignUp;
 import co.za.share.Client.User.UserCredentials;
 import co.za.share.Client.User.UserDetailsToSend;
-import co.za.share.Server.Options.User.UniqueIdentifierCreator;
+import co.za.share.Server.UserDetails.User.UniqueIdentifierCreator;
 
 public class Client {
     private Scanner scanner;

@@ -1,4 +1,4 @@
-package co.za.share.Server.Options.Account;
+package co.za.share.Server.UserDetails.Account;
 
 public class ValidateTransactions {
     

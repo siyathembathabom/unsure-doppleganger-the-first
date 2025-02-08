@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Server.Options.User.UniqueIdentifierCreator;
+import co.za.share.Server.UserDetails.User.UniqueIdentifierCreator;
 
 public class UniqueIdentifierCreatorTest {
 

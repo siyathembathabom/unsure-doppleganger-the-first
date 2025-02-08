@@ -1,4 +1,4 @@
-package co.za.share.Server.Options.User;
+package co.za.share.Server.UserDetails.User;
 
 import java.security.SecureRandom;
 
