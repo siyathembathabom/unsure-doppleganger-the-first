@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Client.User.UserCredentials;
+import src.test.java.co.za.share.UnitTests.ServerTest.Account.User.UserCredentials;
 
 public class UserCredentialsTest {
 

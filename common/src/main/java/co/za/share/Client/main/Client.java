@@ -13,6 +13,7 @@ import co.za.share.Client.User.UserCredentials;
 import co.za.share.Client.User.UserDetailsToSend;
 import co.za.share.Server.UserDetails.UniqueIdentifierCreator;
 
+
 public class Client {
     private Scanner scanner;
     private Socket socket;

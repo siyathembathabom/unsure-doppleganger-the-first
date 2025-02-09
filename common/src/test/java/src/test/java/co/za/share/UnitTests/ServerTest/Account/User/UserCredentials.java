@@ -1,4 +1,6 @@
-package co.za.share.Client.User;
+package src.test.java.co.za.share.UnitTests.ServerTest.Account.User;
+
+import co.za.share.Server.Account.Account;
 
 public class UserCredentials {
 
@@ -6,6 +8,7 @@ public class UserCredentials {
     private String userName;
     private String userEmail;
     private String userPhoneNumber;
+    private Account userAccount;
 
     public void setUserIdentifier(String id) {
         this.uniqueIdentifier = id;
@@ -37,5 +40,13 @@ public class UserCredentials {
 
     public String getUserPhoneNumber() {
         return this.userPhoneNumber;
+    }
+
+    public void setUserAccount(Account account) {
+        this.userAccount = account;
+    }
+
+    public Account getUserAccount() {
+        return this.userAccount;
     }
 }

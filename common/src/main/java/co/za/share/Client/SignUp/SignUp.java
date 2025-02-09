@@ -9,9 +9,9 @@ public class SignUp {
     private UserCredentials userCredentials;
     private ValidateSignUp validate;
     
-    public SignUp(Scanner scanner, UserCredentials userCredentials) {
+    public SignUp(Scanner scanner, UserCredentials user) {
         this.scanner = scanner;
-        this.userCredentials = userCredentials;
+        this.userCredentials = user;
         this.validate = new ValidateSignUp();
     }
 

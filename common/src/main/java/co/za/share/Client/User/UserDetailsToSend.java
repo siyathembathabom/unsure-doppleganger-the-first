@@ -4,13 +4,13 @@ import org.json.JSONObject;
 
 public class UserDetailsToSend {
 
-    public static JSONObject createUserCredentialsJSONObject(UserCredentials userCredentials) {
+    public static JSONObject createUserCredentialsJSONObject(UserCredentials user) {
         JSONObject userObject = new JSONObject();
 
-        userObject.put("name", userCredentials.getUserName());
-        userObject.put("email", userCredentials.getUserEmail());
-        userObject.put("number", userCredentials.getUserPhoneNumber());
-        userObject.put("unique identifier", userCredentials.getUserIdentifier());
+        userObject.put("name", user.getUserName());
+        userObject.put("email", user.getUserEmail());
+        userObject.put("number", user.getUserPhoneNumber());
+        userObject.put("unique identifier", user.getUserIdentifier());
 
         return userObject;
     }
