@@ -1,4 +1,4 @@
-package co.za.share.Server;
+package co.za.share.Server.main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import co.za.share.Server.UserDetails.Account.Account;
-import co.za.share.Server.UserDetails.Account.ValidateTransactions;
-import co.za.share.Server.UserDetails.User.UserCredentials;
+import co.za.share.Server.Account.Account;
+import co.za.share.Server.Account.ValidateTransactions;
+import co.za.share.Server.UserDetails.UserCredentials;
 
-public class UserHandler implements Runnable {
-    private static ArrayList<UserHandler> userHandlers = new ArrayList<>();
+public class ClientHandler implements Runnable {
+    private static ArrayList<ClientHandler> userHandlers = new ArrayList<>();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private UserCredentials userCredentials;
     private String userDetails;
 
-    public UserHandler(Socket socket) {
+    public ClientHandler(Socket socket) {
         try {
             this.socket = socket;
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -102,7 +102,7 @@ public class UserHandler implements Runnable {
                         sendMessage("Enter Amount: ");
                         String amount = listenForMessage();
                         if (getAmount(amount)) {
-                            for (UserHandler user : userHandlers) {
+                            for (ClientHandler user : userHandlers) {
                                 if (user.userCredentials.getUserIdentifier().equals(accountNumber) &&
                                     ValidateTransactions.isTransactionValid( Double.parseDouble(amount),
                                     this.userCredentials.getUserAccount().getBalance(),

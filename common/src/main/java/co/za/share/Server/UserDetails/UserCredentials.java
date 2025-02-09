@@ -1,6 +1,6 @@
-package co.za.share.Server.UserDetails.User;
+package co.za.share.Server.UserDetails;
 
-import co.za.share.Server.UserDetails.Account.Account;
+import co.za.share.Server.Account.Account;
 
 public class UserCredentials {
 

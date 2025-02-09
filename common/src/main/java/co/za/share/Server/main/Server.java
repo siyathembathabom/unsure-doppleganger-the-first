@@ -1,4 +1,4 @@
-package co.za.share.Server;
+package co.za.share.Server.main;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -16,7 +16,7 @@ public class Server {
             while(!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
                 System.out.println("A new client has conneted!");
-                UserHandler userHandler = new UserHandler(socket);
+                ClientHandler userHandler = new ClientHandler(socket);
 
                 Thread thread = new Thread(userHandler);
                 thread.start();

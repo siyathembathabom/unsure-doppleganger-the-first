@@ -1,11 +1,11 @@
-package src.test.java.co.za.share.UnitTests.Server.Account;
+package src.test.java.co.za.share.UnitTests.ServerTest.Account;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Server.UserDetails.Account.ValidateTransactions;
+import co.za.share.Server.Account.ValidateTransactions;
 
 public class ValidateTransactionsTest {
 

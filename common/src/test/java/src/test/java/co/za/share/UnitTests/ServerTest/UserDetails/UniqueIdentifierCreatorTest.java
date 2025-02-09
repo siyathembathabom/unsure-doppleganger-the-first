@@ -1,4 +1,4 @@
-package src.test.java.co.za.share.UnitTests.Server.User;
+package src.test.java.co.za.share.UnitTests.ServerTest.UserDetails;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Server.UserDetails.User.UniqueIdentifierCreator;
+import co.za.share.Server.UserDetails.UniqueIdentifierCreator;
 
 public class UniqueIdentifierCreatorTest {
 

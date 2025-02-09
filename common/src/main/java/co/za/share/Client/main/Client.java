@@ -1,4 +1,4 @@
-package co.za.share.Client;
+package co.za.share.Client.main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 import co.za.share.Client.SignUp.SignUp;
 import co.za.share.Client.User.UserCredentials;
 import co.za.share.Client.User.UserDetailsToSend;
-import co.za.share.Server.UserDetails.User.UniqueIdentifierCreator;
+import co.za.share.Server.UserDetails.UniqueIdentifierCreator;
 
 public class Client {
     private Scanner scanner;

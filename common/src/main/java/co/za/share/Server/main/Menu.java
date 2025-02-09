@@ -1,4 +1,4 @@
-package co.za.share.Server;
+package co.za.share.Server.main;
 
 public class Menu {
 

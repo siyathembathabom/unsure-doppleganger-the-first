@@ -1,13 +1,13 @@
-package src.test.java.co.za.share.UnitTests.Server.Account;
+package src.test.java.co.za.share.UnitTests.ServerTest.Account;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import co.za.share.Server.UserDetails.Account.Account;
-import co.za.share.Server.UserDetails.User.UniqueIdentifierCreator;
-import co.za.share.Server.UserDetails.User.UserCredentials;
+import co.za.share.Server.Account.Account;
+import co.za.share.Server.UserDetails.UniqueIdentifierCreator;
+import co.za.share.Server.UserDetails.UserCredentials;
 
 public class AccountTest {
 
