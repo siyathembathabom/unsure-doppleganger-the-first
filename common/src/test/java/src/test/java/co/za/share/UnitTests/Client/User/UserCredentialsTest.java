@@ -1,4 +1,4 @@
-package src.test.java.co.za.share.UnitTests;
+package src.test.java.co.za.share.UnitTests.Client.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

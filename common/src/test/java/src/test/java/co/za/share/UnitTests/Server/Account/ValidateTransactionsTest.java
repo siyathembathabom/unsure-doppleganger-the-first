@@ -1,4 +1,4 @@
-package src.test.java.co.za.share.UnitTests;
+package src.test.java.co.za.share.UnitTests.Server.Account;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -4,7 +4,7 @@ public class Menu {
 
     public static String menu() {
         return """
-                Choose a number for to perform an action. Here are the options:
+                Choose a number to perform an action. Here are the options:
                 1 - Get account details
                 2 - Withdraw money
                 3 - Deposit money
