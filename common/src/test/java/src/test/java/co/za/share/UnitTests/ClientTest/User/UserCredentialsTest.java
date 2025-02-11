@@ -1,11 +1,10 @@
 package src.test.java.co.za.share.UnitTests.ClientTest.User;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import src.test.java.co.za.share.UnitTests.ServerTest.Account.User.UserCredentials;
+import co.za.share.Client.User.UserCredentials;
 
 public class UserCredentialsTest {
 
