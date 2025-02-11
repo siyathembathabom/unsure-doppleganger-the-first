@@ -1,11 +1,11 @@
-# Terminal-Based Banking App using Java
+Terminal-Based Banking App using Java
 
-## Summary
+Summary
 The following is a basic banking app on the terminal, built by using asynchronous 
 development (Client-Server) and is the first of three.
   
-## Status of Completion
-- Completion loading...
+Status of Completion
+* Completion loading...
 
 ```
 common/
@@ -37,7 +37,7 @@ common/
 └── README.md
 ```
 
-## How-To-Use Guide
+How-To-Use Guide
 1. git clone https://github.com/siyathembathabom/unsure-doppleganger-the-first.git
 2. Navigate to Server.java and run. Thereafter navigate to Client.java, run and follow the prompts.
 *Note, to transfer, another Client needs to be connected. I am working on creating a database to handle this issue.*
