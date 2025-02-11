@@ -7,6 +7,7 @@
 ## Status of Completion
 - Completion loading...
 
+## Structure
 ```
 common/
 ├── src/
