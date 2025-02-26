@@ -1,0 +1,13 @@
+co/za/share/Client/User/UserDetailsToSend.class
+co/za/share/Server/Account/ValidateTransactions.class
+co/za/share/Server/main/Server.class
+co/za/share/Client/SignUp/ValidateSignUp.class
+co/za/share/Client/main/Client.class
+co/za/share/Server/Account/Account.class
+co/za/share/Server/UserDetails/UserCredentials.class
+co/za/share/Server/main/Menu.class
+co/za/share/Server/UserDetails/UniqueIdentifierCreator.class
+co/za/share/Client/User/UserCredentials.class
+co/za/share/Client/main/Client$1.class
+co/za/share/Server/main/ClientHandler.class
+co/za/share/Client/SignUp/SignUp.class

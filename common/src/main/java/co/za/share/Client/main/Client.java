@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import co.za.share.Client.Login.Login;
 import co.za.share.Client.SignUp.SignUp;
 import co.za.share.Client.User.UserCredentials;
 import co.za.share.Client.User.UserDetailsToSend;
@@ -83,14 +84,37 @@ public class Client {
         }
     }
 
+    public static boolean loginOrSignUp() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Are you new here? (Y/n):");
+        String answer = scanner.nextLine();
+
+        while (true) {
+            if (answer.equalsIgnoreCase("") || answer.equalsIgnoreCase("yes")) {
+                return true;
+            }
+            if (answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no")) {
+                return false;
+            }
+            System.out.print("Invalid response. Are you new here? (Y/n): ");
+            answer = scanner.nextLine();
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         UserCredentials user = new UserCredentials();
         UniqueIdentifierCreator uniqueIdentifierCreator = new UniqueIdentifierCreator();
-        SignUp signUp = new SignUp(scanner, user);
-        signUp.signUp(uniqueIdentifierCreator.createUserID());
         Socket socket = new Socket("localhost", 9000);
-        Client client = new Client(socket, scanner, UserDetailsToSend.createUserCredentialsJSONObject(user).toString());
+        if (loginOrSignUp()) {
+            SignUp signUp = new SignUp(scanner, user);
+            signUp.signUp(uniqueIdentifierCreator.createUserID());
+            
+        } else {
+            Login login = new Login(scanner, user);
+            login.login();
+        }
+        Client client = new Client(socket, scanner, UserDetailsToSend.createNewUserCredentialsJSONObject(user).toString());
         client.listenForMessage();
         client.sendMessage();
     }

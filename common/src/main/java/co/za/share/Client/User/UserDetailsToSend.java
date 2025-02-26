@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 public class UserDetailsToSend {
 
-    public static JSONObject createUserCredentialsJSONObject(UserCredentials user) {
+    public static JSONObject createNewUserCredentialsJSONObject(UserCredentials user) {
         JSONObject userObject = new JSONObject();
 
         userObject.put("name", user.getUserName());
