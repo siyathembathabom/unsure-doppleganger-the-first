@@ -3,11 +3,13 @@ package co.za.share.Client.SignUp;
 import java.util.Scanner;
 
 import co.za.share.Client.User.UserCredentials;
+import co.za.share.Client.Database.ClientDatabaseHandler;
 
 public class SignUp {
     private Scanner scanner;
     private UserCredentials userCredentials;
     private ValidateSignUp validate;
+    private String password;
     
     public SignUp(Scanner scanner, UserCredentials user) {
         this.scanner = scanner;
@@ -49,10 +51,29 @@ public class SignUp {
         this.userCredentials.setUserIdentifier(id);
     }
 
+    public void createPassword() {
+        while (true) {
+            System.out.print("Enter your password: ");
+            this.password = this.scanner.nextLine();
+
+            System.out.print("Re-enter password: ");
+            String passwordTheSecond = this.scanner.nextLine();
+
+            if (password.equals(passwordTheSecond)) {
+                break;
+            }
+            System.out.println("Passwords do not match. Please try again.");
+        }
+    }
+
     public void signUp(String id) {
         createName();
         createEmail();
         createNumber();
         createUniqueIdentifier(id);
+        createPassword();
+        ClientDatabaseHandler.registerUser(this.password, this.userCredentials.getUserIdentifier(),
+             this.userCredentials.getUserName(), this.userCredentials.getUserEmail(),
+             this.userCredentials.getUserPhoneNumber());
     }
 }

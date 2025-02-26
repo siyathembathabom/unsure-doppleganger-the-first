@@ -12,7 +12,7 @@ import co.za.share.Client.Login.Login;
 import co.za.share.Client.SignUp.SignUp;
 import co.za.share.Client.User.UserCredentials;
 import co.za.share.Client.User.UserDetailsToSend;
-import co.za.share.Server.UserDetails.UniqueIdentifierCreator;
+import co.za.share.Client.User.UniqueIdentifierCreator;
 
 
 public class Client {
@@ -90,7 +90,7 @@ public class Client {
         String answer = scanner.nextLine();
 
         while (true) {
-            if (answer.equalsIgnoreCase("") || answer.equalsIgnoreCase("yes")) {
+            if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
                 return true;
             }
             if (answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no")) {
@@ -105,15 +105,15 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         UserCredentials user = new UserCredentials();
         UniqueIdentifierCreator uniqueIdentifierCreator = new UniqueIdentifierCreator();
-        Socket socket = new Socket("localhost", 9000);
         if (loginOrSignUp()) {
             SignUp signUp = new SignUp(scanner, user);
             signUp.signUp(uniqueIdentifierCreator.createUserID());
             
         } else {
             Login login = new Login(scanner, user);
-            login.login();
+            // login.login();
         }
+        Socket socket = new Socket("localhost", 9000);
         Client client = new Client(socket, scanner, UserDetailsToSend.createNewUserCredentialsJSONObject(user).toString());
         client.listenForMessage();
         client.sendMessage();
