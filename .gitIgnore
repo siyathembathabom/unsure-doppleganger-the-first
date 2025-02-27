@@ -3,3 +3,6 @@
 
 #Target files
 target/
+
+#Database files
+.db
