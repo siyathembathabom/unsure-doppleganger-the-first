@@ -1,4 +1,4 @@
-package co.za.share.Client.SignUp;
+package co.za.share.Client.Database;
 
 import org.mindrot.jbcrypt.BCrypt;
 

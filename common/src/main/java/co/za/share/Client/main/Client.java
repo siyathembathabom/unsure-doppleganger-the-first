@@ -111,7 +111,11 @@ public class Client {
             
         } else {
             Login login = new Login(scanner, user);
-            // login.login();
+            login.login();
+            if (user.getUserName().isEmpty()) {
+                System.out.println("Login attempt unsuccessful. Goodbye!");
+                return;
+            }
         }
         Socket socket = new Socket("localhost", 9000);
         Client client = new Client(socket, scanner, UserDetailsToSend.createNewUserCredentialsJSONObject(user).toString());

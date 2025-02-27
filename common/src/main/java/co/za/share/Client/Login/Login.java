@@ -1,6 +1,8 @@
 package co.za.share.Client.Login;
 
 import java.util.Scanner;
+
+import co.za.share.Client.Database.ClientDatabaseHandler;
 import co.za.share.Client.User.UserCredentials;
 
 public class Login {
@@ -12,23 +14,19 @@ public class Login {
         this.user = user;
     }
 
-    public void setUserName(String name) {
-        this.user.setUserName(name);
-    }
+    public UserCredentials login() {
+        System.out.print("Enter your username: ");
+        String username = this.scanner.nextLine();
 
-    public void setUserEmail(String email) {
-        this.user.setUserEmail(email);
-    }
+        System.out.print("Enter your password: ");
+        String password = this.scanner.nextLine();
 
-    public void setUserPhoneNumber(String phoneNumber) {
-        this.setUserPhoneNumber(phoneNumber);
+        int count = 5;
+        while (count > 0) {
+            if (ClientDatabaseHandler.loginUser(username, password, user)) {
+                return user;
+            }
+        }
+        return user;
     }
-
-    public void setUserIdentifier(String identifier) {
-        this.user.setUserIdentifier(identifier);
-    }
-
-    // public UserCredentials login() {
-    //     this.scanner.
-    // }
 }
