@@ -59,6 +59,9 @@ public class Client {
                 while (socket.isConnected()) {
                     try {
                         messageFromServer = bufferedReader.readLine();
+                        if (messageFromServer == null) {
+                            System.exit(0);
+                        }
                         System.out.println(messageFromServer);
                     } catch (Exception e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
@@ -84,8 +87,7 @@ public class Client {
         }
     }
 
-    public static boolean loginOrSignUp() {
-        Scanner scanner = new Scanner(System.in);
+    public static boolean loginOrSignUp(Scanner scanner) {
         System.out.print("Are you new here? (Y/n):");
         String answer = scanner.nextLine();
 
@@ -105,20 +107,21 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         UserCredentials user = new UserCredentials();
         UniqueIdentifierCreator uniqueIdentifierCreator = new UniqueIdentifierCreator();
-        if (loginOrSignUp()) {
+        String userStatus = "false";
+        if (loginOrSignUp(scanner)) {
             SignUp signUp = new SignUp(scanner, user);
             signUp.signUp(uniqueIdentifierCreator.createUserID());
-            
         } else {
             Login login = new Login(scanner, user);
             login.login();
+            userStatus = "true";
             if (user.getUserName().isEmpty()) {
                 System.out.println("Login attempt unsuccessful. Goodbye!");
                 return;
             }
         }
         Socket socket = new Socket("localhost", 9000);
-        Client client = new Client(socket, scanner, UserDetailsToSend.createNewUserCredentialsJSONObject(user).toString());
+        Client client = new Client(socket, scanner, UserDetailsToSend.createNewUserCredentialsJSONObject(user, userStatus).toString());
         client.listenForMessage();
         client.sendMessage();
     }

@@ -7,7 +7,7 @@ public class ClientDatabase {
     public static void main(String[] args) {
         String url = "jdbc:sqlite:user.db";
 
-        String createTAbleSQL = "CREATE TABLE IF NOT EXISTS user_records ("
+        String createTableSQL = "CREATE TABLE IF NOT EXISTS user_records ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "password_hash TEXT NOT NULL, "
                 + "user_identifier TEXT NOT NULL, "
@@ -17,10 +17,10 @@ public class ClientDatabase {
         
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();) {
-            stmt.execute(createTAbleSQL);
+            stmt.execute(createTableSQL);
             System.out.println("Database and table created successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }  
+    }
 }

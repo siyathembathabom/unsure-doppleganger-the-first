@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import co.za.share.Server.Account.Account;
 import co.za.share.Server.Account.ValidateTransactions;
 import co.za.share.Server.UserDetails.UserCredentials;
+import co.za.share.Server.Database.ServerDatabaseHandler;
 
 public class ClientHandler implements Runnable {
     private static ArrayList<ClientHandler> userHandlers = new ArrayList<>();
@@ -21,6 +22,7 @@ public class ClientHandler implements Runnable {
     private BufferedWriter bufferedWriter;
     private UserCredentials userCredentials;
     private String userDetails;
+    private boolean userStatus;
 
     public ClientHandler(Socket socket) {
         try {
@@ -134,6 +136,15 @@ public class ClientHandler implements Runnable {
 
                 if (userInput.equals("7")) {
                     sendMessage("See you next time!");
+                    if (!this.userStatus) {
+                        ServerDatabaseHandler.insertAccountRecords(this.userCredentials.getUserAccount().getAccountId(),
+                         this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getTransactionHistory());
+                        System.out.println("Did we get here?");
+                    } else {
+                        ServerDatabaseHandler.updateAccountRecords(this.userCredentials.getUserAccount().getAccountId(),
+                         this.userCredentials.getUserAccount().getBalance(), this.userCredentials.getUserAccount().getTransactionHistory());
+                        System.out.println("Did we get here?");
+                    }
                     closeEverything(socket, bufferedReader, bufferedWriter);
                     break;
                 }
@@ -179,6 +190,11 @@ public class ClientHandler implements Runnable {
         this.userCredentials.setUserPhoneNumber(jsonObject.getString("number"));
         this.userCredentials.setUserIdentifier(jsonObject.getString("unique identifier"));
         this.userCredentials.setUserAccount(new Account(this.userCredentials, this.userCredentials.getUserIdentifier()));
+        if (jsonObject.getString("user_status").equals("true")) {
+            ServerDatabaseHandler.loadUserAcountRecords(this.userCredentials.getUserIdentifier(), this.userCredentials.getUserAccount());
+            this.userStatus = true;
+        }
+        this.userStatus = false;
     }
 
     public String getUserDetails() {

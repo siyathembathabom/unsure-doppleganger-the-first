@@ -6,7 +6,7 @@ import co.za.share.Client.User.UserCredentials;
 
 public class ClientDatabaseHandler {
 
-    public static void registerUser(String password,String uniqueIdentifier,
+    public static void registerUser(String password, String uniqueIdentifier,
          String name, String email, String number) {
         String hashPassword = PasswordUtils.hashPassword(password);
 
